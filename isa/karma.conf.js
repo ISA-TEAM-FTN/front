@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/isa'),
+      dir: require('path').join(__dirname, './coverage/spring-security-front-app'),
       subdir: '.',
       reporters: [
         { type: 'html' },

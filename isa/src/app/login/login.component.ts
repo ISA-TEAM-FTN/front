@@ -1,97 +1,86 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import {ApiService} from "../api.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService, UserService} from '../service';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+
+interface DisplayMessage {
+  msgType: string;
+  msgBody: string;
+}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  public loginInvalid = false;
-  private formSubmitAttempt = false;
-  public errorMessage : any; 
+  title = 'Login';
+  form!: FormGroup;
+
+  /**
+   * Boolean used in telling the UI
+   * that the form has been submitted
+   * and is awaiting a response
+   */
+  submitted = false;
+
+   /**
+   * Notification message from received
+   * form request or router
+   */
+    notification!: DisplayMessage;
+
+    returnUrl!: string;
+    private ngUnsubscribe: Subject<void> = new Subject<void>();
 
 
   constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
+    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
-    private apiService: ApiService
-  ) {
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) { }
 
-    this.form = this.fb.group({
-      email: ['', Validators.email],
-      password: ['', Validators.required]
+  ngOnInit() {
+    this.route.params
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((params: any) => {
+        this.notification = params as DisplayMessage;
+      });
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.form = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
     });
   }
 
-  async ngOnInit(): Promise<void> {
-
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
-  async onSubmit(): Promise<void> {
-    this.loginInvalid = false;
-    this.formSubmitAttempt = false;
-    if (this.form.valid) {
-      try {
-        const email = this.form.get('email')?.value;
-        const password = this.form.get('password')?.value;
-        console.log("dskak")
-        this.apiService.login({
-          email: email,
-          password: password
-        }
-        ).subscribe((response : any) => {
-          console.log("dsadas")
-          let token = response.token;
-          localStorage.setItem("token", token);
-          this.apiService.getCurrentUser().subscribe((response : any) => {
-            let user = response;
-            console.log("")
-            localStorage.setItem('user', JSON.stringify(user));
-            this.navigate()
-          })
-        },(error:any) => {
-          console.log(error)
-          this.errorMessage = error.error;
-        })
+  onSubmit() {
+    /**
+     * Innocent until proven guilty
+     */
+    
+    this.notification;
+    this.submitted = true;
 
-      }
-       catch (err) {
-        this.loginInvalid = true;
-      }
-    } else {
-      this.formSubmitAttempt = true;
-    }
+    this.authService.login(this.form.value)
+      .subscribe(data => {
+          this.userService.getMyInfo().subscribe();
+          this.router.navigate(['/home']);
+        },
+        error => {
+          console.log(error);
+          this.submitted = false;
+          this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
+        });
   }
 
-  navigate()
-  {
-    const userString = localStorage.getItem('user');
-    if(!userString)
-    {
-      return;
-    }
-    const user = JSON.parse((userString));
-    if(user.userType == 0)
-    {
-      this.router.navigate(['/users']);
-    }
-
-    else if(user.userType == 1)
-    {
-      this.router.navigate(['/patient']);
-    }
-
-    else if(user.userType == 3)
-    {
-      this.router.navigate(['/doctorPage']);
-
-    }
-
-  }
 }

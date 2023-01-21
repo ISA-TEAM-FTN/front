@@ -1,61 +1,53 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatTableModule } from '@angular/material/table';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSliderModule} from '@angular/material/slider';
-import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {ApiService} from './service/api.service';
+import {AuthService} from './service/auth.service';
+import {UserService} from './service/user.service';
+import {ConfigService} from './service/config.service';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    HomeComponent,
+    LoginComponent,
+    SignUpComponent,
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatCardModule,
-    MatNativeDateModule,
-    MatMenuModule,
-    MatSliderModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDividerModule,
-    MatSlideToggleModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatProgressSpinnerModule,  
+    AppRoutingModule,
+    NoopAnimationsModule,
+    AngularMaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthService,
+    ApiService,
+    UserService,
+    ConfigService,
+  ],
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
