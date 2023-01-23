@@ -33,10 +33,6 @@ export class AddAppointmentComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-
-    this.api.getDoctors().subscribe((response : any) => {
-      this.doctors = response;
-    })
   }
 
   async onSubmit(): Promise<void> {

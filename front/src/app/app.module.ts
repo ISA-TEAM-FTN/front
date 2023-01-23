@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,15 +25,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AddUserComponent } from './add-user/add-user.component';
-import { AddPharmacyComponent } from './add-pharmacy/add-pharmacy.component';
-import { ViewPharmacyComponent } from './view-pharmacy/view-pharmacy.component';
-import { AddMedicineComponent } from './add-medicine/add-medicine.component';
 import { AgmCoreModule } from '@agm/core';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
-import { AddConsultationComponent } from './add-consultation/add-consultation.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { ConsultationsComponent } from './consultations/consultations.component';
 import { CenterAccountComponent } from './center-account/center-account.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -42,18 +37,13 @@ import { CenterAccountComponent } from './center-account/center-account.componen
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     EditProfileComponent,
     ChangePasswordComponent,
     AddUserComponent,
-    AddPharmacyComponent,
-    ViewPharmacyComponent,
-    AddMedicineComponent,
     AddAppointmentComponent,
-    AddConsultationComponent,
     AppointmentsComponent,
-    ConsultationsComponent,
-    CenterAccountComponent
+    CenterAccountComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
