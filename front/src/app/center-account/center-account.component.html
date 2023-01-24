@@ -17,10 +17,22 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input  class="form-control"   matInput [value]="centeraccount.description" placeholder="DEscription" formControlName="description" >
+            <input  class="form-control"   matInput [value]="centeraccount.description" placeholder="Description" formControlName="description" >
             <mat-error>
               First name is required
             </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <input class="form-control" matInput [value]="centeraccount.averageRating" placeholder="Average rating"
+              disabled>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <mat-label>Start time</mat-label>
+            <input type="time" class="form-control "  matInput [value]="centeraccount.startTime" formControlName="startTime">
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <mat-label>End time</mat-label>
+            <input type="time" class="form-control "  matInput [value]="centeraccount.endTime" formControlName="endTime">
           </mat-form-field>
           <br>
           <br>

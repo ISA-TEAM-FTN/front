@@ -25,6 +25,8 @@ export class CenterAccountComponent implements OnInit {
       name: [''],
       address: [''],
       description: [''],
+      startTime: [''],
+      endTime: [''],
     });
 
     const userString = localStorage.getItem('user');
@@ -49,7 +51,9 @@ export class CenterAccountComponent implements OnInit {
       this.form.patchValue({
         name: this.centeraccount.name,
         address: this.centeraccount.address,
-        description: this.centeraccount.description
+        description: this.centeraccount.description,
+        startTime: this.centeraccount.startTime,
+        endTime: this.centeraccount.endTime,
         
      });  
     })
@@ -60,10 +64,14 @@ export class CenterAccountComponent implements OnInit {
         const name = this.form.get('name')?.value;
         const address = this.form.get('address')?.value;
         const description = this.form.get('description')?.value;
+        const startTime = this.form.get('startTime')?.value;
+        const endTime = this.form.get('endTime')?.value;
         this.api.updateCenterAccount({
           name: name,
           address: address,
           description: description,
+          startTime: startTime,
+          endTime: endTime,
           
         }).subscribe((response : any) => {
           this.ngOnInit()

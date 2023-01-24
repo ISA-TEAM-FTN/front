@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public loginInvalid = false;
   private formSubmitAttempt = false;
   private returnUrl: string;
-
+  infoMessage!: string;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -30,7 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-
+ this.infoMessage = '';
+    this.route.queryParams
+    .subscribe(params => {
+      if(params['login'] !== undefined && params['login'] === 'false') {
+          this.infoMessage = 'Please Login!';
+      }
+    });
   }
 
   async onSubmit(): Promise<void> {

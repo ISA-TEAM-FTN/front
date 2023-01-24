@@ -14,13 +14,19 @@ export class ChangePasswordComponent implements OnInit {
   public changePasswordInvalid = false;
   private formSubmitAttempt = false;
   private returnUrl: string;
-
+  user: any;
   constructor(
       private fb: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
       private apiService: ApiService
   ) {
+    const userString = localStorage.getItem('user');
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    }
+  
+    this.user = JSON.parse((userString) || '{}');
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/game';
 
     this.form = this.fb.group({

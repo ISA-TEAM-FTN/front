@@ -24,9 +24,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { AgmCoreModule } from '@agm/core';
-import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { CenterAccountComponent } from './center-account/center-account.component';
 import { SearchComponent } from './search/search.component';
@@ -39,8 +37,6 @@ import { SearchComponent } from './search/search.component';
     RegisterComponent,
     EditProfileComponent,
     ChangePasswordComponent,
-    AddUserComponent,
-    AddAppointmentComponent,
     AppointmentsComponent,
     CenterAccountComponent,
     SearchComponent

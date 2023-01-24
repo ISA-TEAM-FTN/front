@@ -23,9 +23,12 @@ export class EditProfileComponent implements OnInit {
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
-    const userJSON = localStorage.getItem('user')
-
-    this.user = JSON.parse(userJSON == null ? "" : userJSON);
+    const userString = localStorage.getItem('user');
+    if(userString == null) {
+      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    }
+  
+    this.user = JSON.parse((userString) || '{}');
 
     this.form = this.fb.group({
       firstName: [this.user.firstName, Validators.required],
