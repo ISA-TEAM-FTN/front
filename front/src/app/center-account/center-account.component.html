@@ -13,6 +13,22 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
+            <mat-label>Country</mat-label>
+            <input class="form-control" matInput [value]="centeraccount.country" placeholder="Country"
+              formControlName="country">
+            <mat-error>
+              Please provide a valid country
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <mat-label>City</mat-label>
+            <input class="form-control" matInput [value]="centeraccount.city" placeholder="City"
+              formControlName="city">
+            <mat-error>
+              Please provide a valid city
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
             <mat-label>Address</mat-label>
             <input class="form-control" matInput [value]="centeraccount.address" placeholder="Address"
               formControlName="address">
@@ -44,14 +60,14 @@
           </mat-form-field>
           <mat-form-field class="full-width-input">
             <mat-label>Latitude</mat-label>
-            <input type="text" class="form-control " matInput [value]="lat" formControlName="lat">
+            <input type="text" class="form-control " matInput [value]="centeraccount.latitude" formControlName="latitude">
           </mat-form-field>
           <mat-form-field class="full-width-input">
             <mat-label>Longitude</mat-label>
-            <input type="text" class="form-control " matInput [value]="lng" formControlName="lng">
+            <input type="text" class="form-control " matInput [value]="centeraccount.longitude" formControlName="longitude">
           </mat-form-field>
-          <agm-map [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          <agm-map [latitude]="latitude" [longitude]="longitude">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
           </agm-map>
 
           <br>

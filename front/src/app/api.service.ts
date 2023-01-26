@@ -113,4 +113,8 @@ export class ApiService {
   createAppointmentReport(data: any) {
     return this.http.post(this.baseURL + "/api/center/appointment-report", data, this.getAuthHeader());
   }
+
+  getAppointmentsDate(data: any) {
+    return this.http.post(this.baseURL + "/api/center/appointments-date", data, this.getAuthHeader());
+  }
 }

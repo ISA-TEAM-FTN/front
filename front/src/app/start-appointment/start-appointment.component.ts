@@ -32,5 +32,6 @@ export class StartAppointmentComponent {
     this.api.getAppointment(this.appointmentId).subscribe((response => {
       this.appointment = response;
     }))
+    
   }
 }

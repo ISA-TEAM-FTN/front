@@ -17,8 +17,8 @@ export class CenterAccountComponent implements OnInit {
   zoom: number = 18;
 
   // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  latitude: number;
+  longitude: number;
 
 
   user: any;
@@ -41,10 +41,12 @@ export class CenterAccountComponent implements OnInit {
       description: [''],
       startTime: [''],
       endTime: [''],
-      lat: [''],
-      lng: ['']
-    });
+      latitude: [''],
+      longitude: [''],
+      country: [''],
+      city: ['']
 
+    });
     const userString = localStorage.getItem('user');
     if (userString == null) {
       this.router.navigate(['/login'], { queryParams: { login: 'false' } });
@@ -72,8 +74,14 @@ export class CenterAccountComponent implements OnInit {
         description: this.centeraccount.description,
         startTime: this.centeraccount.startTime,
         endTime: this.centeraccount.endTime,
-
+        latitude: this.centeraccount.latitude,
+        longitude: this.centeraccount.longitude,
+        country: this.centeraccount.country,
+        city: this.centeraccount.city
+        
       });
+      this.latitude = this.centeraccount.latitude;
+      this.longitude = this.centeraccount.longitude;
     })
 
 
@@ -94,12 +102,22 @@ export class CenterAccountComponent implements OnInit {
     const description = this.form.get('description')?.value;
     const startTime = this.form.get('startTime')?.value;
     const endTime = this.form.get('endTime')?.value;
+    const latitude = this.form.get('latitude')?.value;
+    const longitude = this.form.get('longitude')?.value;
+    const city = this.form.get('city')?.value;
+    const country = this.form.get('country')?.value;
+
     this.api.updateCenterAccount({
       name: name,
       address: address,
       description: description,
       startTime: startTime,
       endTime: endTime,
+      latitude: latitude,
+      longitude: longitude,
+      city: city,
+      country: country,
+
 
     }).subscribe((response: any) => {
       this.ngOnInit()
@@ -107,16 +125,5 @@ export class CenterAccountComponent implements OnInit {
     });
 
 
-
   }
-
-
-}
-
-
-interface marker {
-  lat: number;
-  lng: number;
-  label: string;
-  draggable: boolean;
 }

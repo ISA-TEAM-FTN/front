@@ -39,9 +39,10 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { StartAppointmentComponent } from './start-appointment/start-appointment.component';
 import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component';
-import { AppoinmentReportComponent } from './appoinment-report/appoinment-report.component'
-
-
+import { AppoinmentReportComponent } from './appoinment-report/appoinment-report.component';
+import { CommonModule } from '@angular/common';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { SingleAppointmentComponent } from './single-appointment/single-appointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { AppoinmentReportComponent } from './appoinment-report/appoinment-report
     WorkCalendarComponent,
     StartAppointmentComponent,
     DenyAppointmentComponent,
-    AppoinmentReportComponent
+    AppoinmentReportComponent,
+    SingleAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,8 @@ import { AppoinmentReportComponent } from './appoinment-report/appoinment-report
     MatDatepickerModule,
     HttpClientModule,
     GoogleMapsModule,
+    CommonModule,
+    NgbModalModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCWGrFk4ZniT9RgJD51xrPzcZ8xeCR3-YU'
     })

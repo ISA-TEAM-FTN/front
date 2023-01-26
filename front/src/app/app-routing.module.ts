@@ -13,6 +13,8 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component';
 import { StartAppointmentComponent } from './start-appointment/start-appointment.component';
 import { AppoinmentReportComponent } from './appoinment-report/appoinment-report.component';
+import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
+import { SingleAppointmentComponent } from './single-appointment/single-appointment.component';
 
 const routes: Routes = [
   {
@@ -70,7 +72,13 @@ const routes: Routes = [
   {
     path: 'appointment-report',
     component: AppoinmentReportComponent
-  }
+  },
+  {
+    path: 'calendar',
+    component: WorkCalendarComponent
+  },
+  { path: 'single-appointment/:date/:month/:year', component: SingleAppointmentComponent },
+
 ];
 
 @NgModule({
