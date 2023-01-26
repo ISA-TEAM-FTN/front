@@ -29,12 +29,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async ngOnInit(): Promise<void> {
+async ngOnInit(): Promise<void> {
  this.infoMessage = '';
     this.route.queryParams
     .subscribe(params => {
       if(params['login'] !== undefined && params['login'] === 'false') {
+          localStorage.clear(); 
           this.infoMessage = 'Please Login!';
+      }
+      if(params['role'] === 'false') {
+        localStorage.clear();
+        this.infoMessage = 'Access denied'
       }
     });
   }
@@ -63,8 +68,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/change-password']);
               return;
             }
-
-            this.router.navigate(['/center']);
+            if(user.role == 'ADMIN_CENTER'){
+              this.router.navigate(['/center']);
+            }
+            else {
+              this.infoMessage = 'Access denied'
+            }
           });
         })
 

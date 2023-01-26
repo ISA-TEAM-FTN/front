@@ -48,6 +48,28 @@
                         Please provide a valid country
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Personal ID</mat-label>
+                    <input matInput type="text" placeholder="Personal ID" formControlName="personalId" required>
+                    <mat-error>
+                        Please provide a personal ID
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Occupation</mat-label>
+                    <input matInput type="text" placeholder="Personal ID" formControlName="occupation">
+            
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <mat-label>Occupation info</mat-label>
+                    <input matInput type="text" placeholder="Personal ID" formControlName="occupationInfo">
+
+                </mat-form-field>
+                <mat-radio-group    formControlName="gender" aria-label="Gender" >  
+                    <mat-radio-button *ngFor="let o of exampleArr; let i = index" [value]="o.gend" [checked]="o.gend === user.gender">   {{o.gend}}
+                    </mat-radio-button>
+                    </mat-radio-group> 
+                  <br>
                 <button mat-raised-button color="primary">Edit</button>
             </form>
         </mat-card-content>

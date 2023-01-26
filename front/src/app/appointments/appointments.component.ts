@@ -16,14 +16,18 @@ export class AppointmentsComponent implements OnInit {
   constructor(private api: ApiService,private router: Router) {
     const userString = localStorage.getItem('user');
     if(userString == null) {
-      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+      this.router.navigate([''], {queryParams: { login: 'false' } });
     }
-  
+    if(this.user.role != 'ADMIN_CENTER'){
+      this.user = null;
+      localStorage.clear();
+      this.router.navigate([''], {queryParams: { role: 'false' } });
+    }
     this.user = JSON.parse((userString) || '{}');
    }
 
   ngOnInit(): void {
-    this.api.getAppointments().subscribe((response : any) => {
+    this.api.getAppointments(this.user.centeraccount.id).subscribe((response : any) => {
       this.data = response;
     });
   }

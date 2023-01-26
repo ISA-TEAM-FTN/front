@@ -8,6 +8,7 @@ import {AppointmentsComponent} from "./appointments/appointments.component";
 import { CenterAccountComponent } from './center-account/center-account.component';
 import { SearchComponent } from './search/search.component';
 import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
+import { BloodTypesComponent } from './blood-types/blood-types.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'create-appointment',
     component: CreateAppointmentComponent
+  },
+  {
+    path: 'blood',
+    component: BloodTypesComponent
   }
 ];
 

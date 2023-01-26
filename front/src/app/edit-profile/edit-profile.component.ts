@@ -14,7 +14,11 @@ export class EditProfileComponent implements OnInit {
   private formSubmitAttempt = false;
   private returnUrl: string;
   user: any
-
+  users:any
+  exampleArr: Array<{ id: number, gend: string}> = [
+    { id: 0, gend: 'MALE'},
+    { id: 1, gend: 'FEMALE'}
+  ];
   constructor(
       private fb: UntypedFormBuilder,
       private route: ActivatedRoute,
@@ -29,19 +33,40 @@ export class EditProfileComponent implements OnInit {
     }
   
     this.user = JSON.parse((userString) || '{}');
-
+    console.log(this.user)
     this.form = this.fb.group({
-      firstName: [this.user.firstName, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      address: [this.user.address, Validators.required],
-      city: [this.user.city, Validators.required],
-      country: [this.user.country, Validators.required],
-      phone: [this.user.phone, Validators.required]
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      phone: ['', Validators.required],
+      personalId: ['', Validators.required],
+      occupation: [''],
+      occupationInfo: [''],
+      gender: ['']
+
     });
   }
 
   async ngOnInit(): Promise<void> {
-
+    this.users = []    
+    this.api.getCurrentUser().subscribe((response : any) => {
+      this.users = response;
+      
+      this.form.patchValue({
+        firstName: this.users.firstName,
+        lastName: this.users.lastName,
+        address: this.users.address,
+        city: this.users.city,
+        country: this.users.country,
+        phone: this.users.phone,
+        personalId: this.users.personalId,
+        occupation: this.users.occupation,
+        occupationInfo: this.users.occupationInfo,
+        gender: this.users.gender        
+     });  
+    })
   }
 
   async onSubmit(): Promise<void> {
@@ -55,6 +80,10 @@ export class EditProfileComponent implements OnInit {
         const city = this.form.get('city')?.value;
         const country = this.form.get('country')?.value;
         const phone = this.form.get('phone')?.value;
+        const personalId = this.form.get('personalId')?.value;
+        const occupation = this.form.get('occupation')?.value;
+        const occupationInfo = this.form.get('occupationInfo')?.value;
+        const gender = this.form.get('gender')?.value;
 
         this.api.updateProfile({
           firstName: firstName,
@@ -63,9 +92,13 @@ export class EditProfileComponent implements OnInit {
           city: city,
           country: country,
           phone: phone,
+          personalId: personalId,
+          occupation: occupation,
+          occupationInfo: occupationInfo,
+          gender: gender,
         }).subscribe((response : any) => {
 
-          this.router.navigate(['/'])
+          this.router.navigate(['/center'])
         });
 
 

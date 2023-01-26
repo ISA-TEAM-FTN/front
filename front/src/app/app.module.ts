@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +33,8 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { CenterAccountComponent } from './center-account/center-account.component';
 import { SearchComponent } from './search/search.component';
 import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { BloodTypesComponent } from './blood-types/blood-types.component'
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { CreateAppointmentComponent } from './create-appointment/create-appointm
     AppointmentsComponent,
     CenterAccountComponent,
     SearchComponent,
-    CreateAppointmentComponent
+    CreateAppointmentComponent,
+    BloodTypesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,11 +67,13 @@ import { CreateAppointmentComponent } from './create-appointment/create-appointm
     MatTableModule,
     MatDividerModule,
     MatSlideToggleModule,
+    MatRadioModule,
     MatSelectModule,
     MatOptionModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
     HttpClientModule,
+    GoogleMapsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCWGrFk4ZniT9RgJD51xrPzcZ8xeCR3-YU'
     })

@@ -48,13 +48,13 @@ export class ApiService {
   }
 
 
-  getAppointments() {
-    return this.http.get(this.baseURL + '/api/center/appointments/', this.getAuthHeader());
+  getAppointments(id: any) {
+    return this.http.get(this.baseURL + '/api/center/appointments/' + id, this.getAuthHeader());
   }
 
   
   getCenterAccount() {
-    return this.http.get(this.baseURL + '/api/center/', this.getAuthHeader());
+    return this.http.get(this.baseURL + '/api/center', this.getAuthHeader());
   }
 
   updateCenterAccount(data: any) {
@@ -70,7 +70,20 @@ export class ApiService {
   }
 
   getAdminsOfCenter(id: any) {
-    return this.http.get(this.baseURL + "/api/center/admins" + id, this.getAuthHeader());
+    return this.http.get(this.baseURL + "/api/center/admins-of-center/" + id, this.getAuthHeader());
+  }
+
+  getBloodAType(id: any) {
+    return this.http.get(this.baseURL + "/api/center/blood-A/" + id, this.getAuthHeader());
+  }
+  getBloodBType(id: any) {
+    return this.http.get(this.baseURL + "/api/center/blood-B/" + id, this.getAuthHeader());
+  }
+  getBloodABType(id: any) {
+    return this.http.get(this.baseURL + "/api/center/blood-AB/" + id, this.getAuthHeader());
+  }
+  getBlood0Type(id: any) {
+    return this.http.get(this.baseURL + "/api/center/blood-0/" + id, this.getAuthHeader());
   }
 
 
