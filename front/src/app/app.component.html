@@ -8,25 +8,26 @@
 
   <div *ngIf="user">
     <div class="dropdown">
-      <button class="dropbtn">Appointments 
+      <button class="dropbtn">Appointments
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
         <a [routerLink]="['/create-appointment']">Create appointment</a>
         <a [routerLink]="['/appointments']">Appointments</a>
       </div>
-    </div> 
+    </div>
     <div class="dropdown">
-      <button class="dropbtn">Center account 
+      <button class="dropbtn">Center account
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
         <a [routerLink]="['/center']">Update center</a>
         <a [routerLink]="['/blood']">Blood types</a>
+        <a [routerLink]="['/users']">Users that donated</a>
       </div>
     </div>
     <div class="dropdown">
-      <button class="dropbtn">Profile 
+      <button class="dropbtn">Profile
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">

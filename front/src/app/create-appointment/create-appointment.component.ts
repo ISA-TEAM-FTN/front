@@ -14,46 +14,45 @@ export class CreateAppointmentComponent implements OnInit {
   form: UntypedFormGroup;
   appointment: any;
   adminsOfCenter: any;
-  constructor(private router: Router, private fb: UntypedFormBuilder, private api: ApiService) 
-    {
-      this.form = this.fb.group({
-        date: [''],
-        duration: ['',[Validators.required,Validators.min(1),Validators.max(120)]],
-        adminsOfCenter: ['']
-      });
+  constructor(private router: Router, private fb: UntypedFormBuilder, private api: ApiService) {
+    this.form = this.fb.group({
+      date: [''],
+      duration: ['', [Validators.required, Validators.min(1), Validators.max(120)]],
+      adminsOfCenter: ['']
+    });
 
-      const userString = localStorage.getItem('user');
-      if(userString == null) {
-        this.user = null;
-        localStorage.clear();
-        this.router.navigate([''], {queryParams: { login: 'false' } });
-      }
-    
-      this.user = JSON.parse((userString) || '{}');
+    const userString = localStorage.getItem('user');
+    if (userString == null) {
+      this.user = null;
+      localStorage.clear();
+      this.router.navigate([''], { queryParams: { login: 'false' } });
+    }
 
-      if(this.user.role != 'ADMIN_CENTER'){
-        this.user = null;
-        localStorage.clear();
-        this.router.navigate([''], {queryParams: { role: 'false' } });
-      }
-     }
+    this.user = JSON.parse((userString) || '{}');
 
-  ngOnInit(): void {
-    this.api.getAdminsOfCenter(this.user.centerAccount.id).subscribe((response : any) => {
-      this.adminsOfCenter = response;
-  });
+    if (this.user.role != 'ADMIN_CENTER') {
+      this.user = null;
+      localStorage.clear();
+      this.router.navigate([''], { queryParams: { role: 'false' } });
+    }
   }
 
-    onSubmit()  {
-      const date = this.form.get('date')?.value;
-      const duration = this.form.get('duration')?.value;
-      const adminOfCenterId = this.form.get('adminsOfCenter')?.value;
-      this.api.createAppointment({
-        date: date,
-        duration: duration,
-        adminOfCenterId: adminOfCenterId
-      }).subscribe((response : any) => {
-      });
-}
+  ngOnInit(): void {
+    this.api.getAdminsOfCenter(this.user.centerAccount.id).subscribe((response: any) => {
+      this.adminsOfCenter = response;
+    });
+  }
+
+  onSubmit() {
+    const date = this.form.get('date')?.value;
+    const duration = this.form.get('duration')?.value;
+    const adminOfCenterId = this.form.get('adminsOfCenter')?.value;
+    this.api.createAppointment({
+      date: date,
+      duration: duration,
+      adminOfCenterId: adminOfCenterId
+    }).subscribe((response: any) => {
+    });
+  }
 }
 

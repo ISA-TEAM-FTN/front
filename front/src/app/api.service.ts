@@ -52,7 +52,7 @@ export class ApiService {
     return this.http.get(this.baseURL + '/api/center/appointments/' + id, this.getAuthHeader());
   }
 
-  
+
   getCenterAccount() {
     return this.http.get(this.baseURL + '/api/center', this.getAuthHeader());
   }
@@ -86,5 +86,23 @@ export class ApiService {
     return this.http.get(this.baseURL + "/api/center/blood-0/" + id, this.getAuthHeader());
   }
 
+  getUsersFromScheduledAppointmets(data: any) {
+    return this.http.post(this.baseURL + "/api/center/scheduled-appointments", data, this.getAuthHeader());
+  }
 
+  getScheduledAppointmentsThatAreNotFinished(id: any) {
+    return this.http.get(this.baseURL + "/api/center/scheduled-appointments/" + id, this.getAuthHeader())
+  }
+
+  getUser(id: any) {
+    return this.http.get(this.baseURL + "/api/users/" + id, this.getAuthHeader());
+  }
+
+  getAppointment(id: any) {
+    return this.http.get(this.baseURL + "/api/center/appointment/" + id, this.getAuthHeader());
+  }
+
+  deny(id: any) {
+    return this.http.put(this.baseURL + "/api/center/deny-user", id, this.getAuthHeader());
+  }
 }

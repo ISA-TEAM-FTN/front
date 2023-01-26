@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
-import {ChangePasswordComponent} from "./change-password/change-password.component";
-import {EditProfileComponent} from "./edit-profile/edit-profile.component";
-import {AppointmentsComponent} from "./appointments/appointments.component";
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
+import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { EditProfileComponent } from "./edit-profile/edit-profile.component";
+import { AppointmentsComponent } from "./appointments/appointments.component";
 import { CenterAccountComponent } from './center-account/center-account.component';
 import { SearchComponent } from './search/search.component';
 import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
 import { BloodTypesComponent } from './blood-types/blood-types.component';
+import { ListUsersComponent } from './list-users/list-users.component';
+import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component';
+import { StartAppointmentComponent } from './start-appointment/start-appointment.component';
 
 const routes: Routes = [
   {
@@ -50,6 +53,18 @@ const routes: Routes = [
   {
     path: 'blood',
     component: BloodTypesComponent
+  },
+  {
+    path: 'users',
+    component: ListUsersComponent
+  },
+  {
+    path: 'deny-appointment',
+    component: DenyAppointmentComponent
+  },
+  {
+    path: 'approve-appointment',
+    component: StartAppointmentComponent
   }
 ];
 

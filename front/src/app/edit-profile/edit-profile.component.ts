@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ApiService} from "../api.service";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,24 +14,24 @@ export class EditProfileComponent implements OnInit {
   private formSubmitAttempt = false;
   private returnUrl: string;
   user: any
-  users:any
-  exampleArr: Array<{ id: number, gend: string}> = [
-    { id: 0, gend: 'MALE'},
-    { id: 1, gend: 'FEMALE'}
+  users: any
+  exampleArr: Array<{ id: number, gend: string }> = [
+    { id: 0, gend: 'MALE' },
+    { id: 1, gend: 'FEMALE' }
   ];
   constructor(
-      private fb: UntypedFormBuilder,
-      private route: ActivatedRoute,
-      private router: Router,
-      private api: ApiService
+    private fb: UntypedFormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private api: ApiService
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
     const userString = localStorage.getItem('user');
-    if(userString == null) {
-      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    if (userString == null) {
+      this.router.navigate(['/login'], { queryParams: { login: 'false' } });
     }
-  
+
     this.user = JSON.parse((userString) || '{}');
     console.log(this.user)
     this.form = this.fb.group({
@@ -50,10 +50,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.users = []    
-    this.api.getCurrentUser().subscribe((response : any) => {
+    this.users = []
+    this.api.getCurrentUser().subscribe((response: any) => {
       this.users = response;
-      
+
       this.form.patchValue({
         firstName: this.users.firstName,
         lastName: this.users.lastName,
@@ -64,8 +64,8 @@ export class EditProfileComponent implements OnInit {
         personalId: this.users.personalId,
         occupation: this.users.occupation,
         occupationInfo: this.users.occupationInfo,
-        gender: this.users.gender        
-     });  
+        gender: this.users.gender
+      });
     })
   }
 
@@ -96,7 +96,7 @@ export class EditProfileComponent implements OnInit {
           occupation: occupation,
           occupationInfo: occupationInfo,
           gender: gender,
-        }).subscribe((response : any) => {
+        }).subscribe((response: any) => {
 
           this.router.navigate(['/center'])
         });

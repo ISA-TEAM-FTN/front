@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ApiService} from "../api.service";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: 'app-change-password',
@@ -16,16 +16,16 @@ export class ChangePasswordComponent implements OnInit {
   private returnUrl: string;
   user: any;
   constructor(
-      private fb: UntypedFormBuilder,
-      private route: ActivatedRoute,
-      private router: Router,
-      private apiService: ApiService
+    private fb: UntypedFormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService
   ) {
     const userString = localStorage.getItem('user');
-    if(userString == null) {
-      this.router.navigate(['/login'], {queryParams: { login: 'false' } });
+    if (userString == null) {
+      this.router.navigate(['/login'], { queryParams: { login: 'false' } });
     }
-  
+
     this.user = JSON.parse((userString) || '{}');
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/game';
 
@@ -46,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
 
         this.apiService.changePassword({
           password: password
-        }).subscribe((response : any) => {
+        }).subscribe((response: any) => {
           this.router.navigate(['/center']);
         })
 
