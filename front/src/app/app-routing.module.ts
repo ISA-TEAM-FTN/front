@@ -12,6 +12,7 @@ import { BloodTypesComponent } from './blood-types/blood-types.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component';
 import { StartAppointmentComponent } from './start-appointment/start-appointment.component';
+import { AppoinmentReportComponent } from './appoinment-report/appoinment-report.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'approve-appointment',
     component: StartAppointmentComponent
+  },
+  {
+    path: 'appointment-report',
+    component: AppoinmentReportComponent
   }
 ];
 

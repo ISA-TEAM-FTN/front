@@ -52,6 +52,7 @@ export class CreateAppointmentComponent implements OnInit {
       duration: duration,
       adminOfCenterId: adminOfCenterId
     }).subscribe((response: any) => {
+      this.router.navigate(['/center'])
     });
   }
 }

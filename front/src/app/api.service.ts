@@ -105,4 +105,12 @@ export class ApiService {
   deny(id: any) {
     return this.http.put(this.baseURL + "/api/center/deny-user", id, this.getAuthHeader());
   }
+
+  getEquipments() {
+    return this.http.get(this.baseURL + "/api/center/equipments", this.getAuthHeader());
+  }
+
+  createAppointmentReport(data: any) {
+    return this.http.post(this.baseURL + "/api/center/appointment-report", data, this.getAuthHeader());
+  }
 }

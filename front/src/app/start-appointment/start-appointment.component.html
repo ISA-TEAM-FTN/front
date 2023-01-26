@@ -50,7 +50,7 @@
     </div>
     <br>
      <div class="row">
-     <button [disabled]="!appointment?.poll.dentalIntervention || !appointment?.poll.cycle || !appointment?.poll.therapy || !appointment?.poll.pressure || !appointment?.poll.infection || !appointment?.poll.sickness || !appointment?.poll.weight || !appointment?.poll.piercing" > Approve
+     <button [routerLink]="['/appointment-report']" [disabled]="!appointment?.poll.dentalIntervention || !appointment?.poll.cycle || !appointment?.poll.therapy || !appointment?.poll.pressure || !appointment?.poll.infection || !appointment?.poll.sickness || !appointment?.poll.weight || !appointment?.poll.piercing" > Approve
      </button>
      <br>
      <span class="strong" *ngIf="!appointment?.poll.dentalIntervention || !appointment?.poll.cycle || !appointment?.poll.therapy || !appointment?.poll.pressure || !appointment?.poll.infection || !appointment?.poll.sickness || !appointment?.poll.weight || !appointment?.poll.piercing">This user is not eligable for blood transfer!</span>
