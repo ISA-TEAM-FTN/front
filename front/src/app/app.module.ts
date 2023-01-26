@@ -38,7 +38,8 @@ import { BloodTypesComponent } from './blood-types/blood-types.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { StartAppointmentComponent } from './start-appointment/start-appointment.component';
-import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component'
+import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.component';
+import { AppoinmentReportComponent } from './appoinment-report/appoinment-report.component'
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DenyAppointmentComponent } from './deny-appointment/deny-appointment.co
     ListUsersComponent,
     WorkCalendarComponent,
     StartAppointmentComponent,
-    DenyAppointmentComponent
+    DenyAppointmentComponent,
+    AppoinmentReportComponent
   ],
   imports: [
     BrowserModule,
